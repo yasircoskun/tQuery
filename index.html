@@ -35,6 +35,9 @@
 
     // get language
     var lang = navigator.language.split("-")[0];
+    if (lang != "tr") {
+      lang = "en";
+    }
 
     ₺("head").append(`
       <title>${i18n[lang].title}</title>
