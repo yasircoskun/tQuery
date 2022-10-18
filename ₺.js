@@ -57,7 +57,7 @@ class Transformer {
 
 function tQuery(){
   new PreProcessor('text/₺Query', [
-    new Transformer(/(₺*?)[\.\(]+/g, (match, p1) => {
+    new Transformer(/(₺*?)[\.\(\{]+/g, (match, p1) => {
       return match.replace('₺', '$');
     }),
   ]).transform();
