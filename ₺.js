@@ -24,27 +24,6 @@ class PreProcessor {
       }
     }
 
-    Async = class {
-      getInnerHTML(script_element) {
-        return new Promise((resolve, reject) => {
-          resolve(this.getInnerHTML());
-        });
-      }
-
-      getSrc(script_element) {
-        let src = script_element.getAttribute('src');
-        return fetch(src).then(response => response.text());
-      }
-
-      getCode(script_element) {
-        if(script_element.src){
-          return this.getSrcAsync(script_element);
-        }else{
-          return this.getInnerHTMLAsync(script_element);
-        }
-      }
-    }
-
     transform(callback=this.evaluate) {
       let scripts = document.querySelectorAll(`script[type="${this.type}"]`);
       scripts.forEach((script) => {
