@@ -45,20 +45,14 @@ class PreProcessor {
       }
     }
 
-    transform(callback) {
+    transform(callback=this.evaluate) {
       let scripts = document.querySelectorAll(`script[type="${this.type}"]`);
       scripts.forEach((script) => {
         let code = this.getCode(script);
         this.transformers.forEach((transformer) => {
           code = transformer.transform(code);
         });
-        console.log(code)
-        if(callback){
-          callback(code);
-        } else {
-          this.evaluate(code);
-        }
-        script.innerHTML = code;
+        callback(code);
       });
     }
 
